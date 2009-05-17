@@ -1,5 +1,5 @@
 from ctypes import *
-from my_debuggger_defines import *
+from my_debugger_defines import *
 
 kernel32 = windll.kernel32
 
@@ -15,7 +15,7 @@ class debugger():
         creation_flags = DEBUG_PROCESS
         
         # instantiate the structs
-        startupinfo         = STARTUPINF()
+        startupinfo         = STARTUPINFO()
         process_information = PROCESS_INFORMATION()
         
         # The following to options allow the started process
@@ -40,7 +40,7 @@ class debugger():
                                    byref(startupinfo),
                                    byref(process_information)):
             print "[*] We have successfully launced the process!"
-            print "[*] PID: %d" % process_information_dwProcessId
+            print "[*] PID: %d" % process_information.dwProcessId
             
         else:
             print "[*] Error: 0x%08x." % kernel32.GetLastError()
